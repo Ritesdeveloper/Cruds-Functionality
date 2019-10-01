@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+	<%- include('../includes/navigation.ejs') %>
+
+
+	<div id="addEmployeeModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+					<form  action="/admin/<% if (editing) { %>edit-employee<% } else { %>add-employee<% } %>" method="POST">
+					
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" class="form-control" name="name" id="name" value="<% if (editing) { %><%= employee.name %><% } %>">
+						</div>
+						<div class="form-group">
+							<label>Email</label>
+							<input type="email" class="form-control" name="email" id="email" value="<% if (editing) { %><%= employee.email %><% } %>">
+						</div>
+						<div class="form-group">
+							<label>Address</label>
+							<textarea class="form-control" name="address" id ="address"><% if (editing) { %><%= employee.address %><% } %></textarea>
+						</div>
+						<div class="form-group">
+							<label>Phone</label>
+							<input type="number" class="form-control" name="phoneno" id="phoneno" value="<% if (editing) { %><%= employee.phoneno %><% } %>">
+						</div>					
+					</div>
+					<% if (editing) { %>
+						<input type="hidden" value="<%= employee._id %>" name="employeeId">
+					<% } %>
+					<button class="btn" type="submit"><% if (editing) { %>Update Employee<% } else { %>Add Employee<% } %></button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<%- include('../includes/end.ejs') %>
